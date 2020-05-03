@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+
+  <div class="container" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field>
+      <input matInput placeholder="character" [mask]="'S'" [(ngModel)]="weightChar" (ngModelChange)="onChangeWeight()" disabled="{{!paymentsService.canSetWeightChar}}">
+    </mat-form-field>
+    <mat-icon>av_timer</mat-icon>
+    <button mat-raised-button color="primary" *ngIf="!paymentsService.serviceStatus" (click)="onGenerateMatrix()">GENERATE 2D GRID</button>
+    <button mat-raised-button color="primary" *ngIf="paymentsService.serviceStatus"  (click)="onStopGenerateMatrix()">STOP GENERATION</button>
+  </div>
+
+  <div class="container" class="matrix">
+    <div class="row" *ngFor="let row of paymentsService.CodeMatrix.Matrix" fxLayout="row">
+      <div class="col" *ngFor="let col of row" fxLayout="col" fxLayoutAlign="center center">
+        <p>{{col}}</p>
+      </div>
+    </div>
+  </div>
+
+  <code-status [status]="paymentsService.serviceStatus" [code]="paymentsService.paymentsCode" ></code-status>
+
+</div>
