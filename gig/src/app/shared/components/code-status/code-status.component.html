@@ -1,0 +1,5 @@
+
+<div class="container" fxLayout="column" fxLayoutAlign="space-around center">
+  <p class="status">  <span [ngClass]="{ 'live': status, 'paused': !status }"></span> {{ status ? 'live' : 'paused' }} </p>
+  <p class="code"> YOUR CODE:  {{code}} </p>
+</div>
